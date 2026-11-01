@@ -1,0 +1,110 @@
+{
+  "scope": "minimal manual-trigger source; no live data exports or private interface",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 57,
+      "sha256": "b7ff5a9a3fbf788f9ebf16cce85ae70f393c1b78343e885d0bcc57380dfdf337"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4080,
+      "sha256": "30636774e9536588022393181c9e1edd1729f4edf8cd4dd1d7a48ca8c76a50f8"
+    },
+    {
+      "path": "adapter/__init__.py",
+      "bytes": 71,
+      "sha256": "113e5ce1d197cf34e0acc94ac937cdba7499b3baaef31ad572b8fdc3908ef5b7"
+    },
+    {
+      "path": "adapter/__main__.py",
+      "bytes": 6600,
+      "sha256": "e7080650d59c2fc2d79b3f059cbad85b7cb15a773aaa5d18c36c5feb3e4fd5f3"
+    },
+    {
+      "path": "adapter/access.py",
+      "bytes": 1575,
+      "sha256": "a6885fc37122eb8619d55cfcdd4dcac135ae4bc7a42fdc60c151098a4e675975"
+    },
+    {
+      "path": "adapter/ledger.py",
+      "bytes": 4013,
+      "sha256": "0df68ad47c4b0c819c3d540c1b6f2fec95fde419011eb37e55eecd637dc787fe"
+    },
+    {
+      "path": "adapter/model.py",
+      "bytes": 4677,
+      "sha256": "730894712f0829e0447ed77daa9d4c53489d4d00740693bc9b90940bb3e6bc0d"
+    },
+    {
+      "path": "adapter/service.py",
+      "bytes": 2224,
+      "sha256": "5811ecb6392e01e9359c06f8a6824383784b80f3db90a2c67f1cf7969dcd72d1"
+    },
+    {
+      "path": "adapter/stream.py",
+      "bytes": 6845,
+      "sha256": "36858e452cb694e12959ec65298de4f1c5e6d94d87d56c800bf649ee7b90bf4b"
+    },
+    {
+      "path": "adapter/xprotect.py",
+      "bytes": 8139,
+      "sha256": "896bef6c9f5929a5cb3577c58aab019bf664b65c5d82895a844369b70a867ab5"
+    },
+    {
+      "path": "config/blocked_sidewalk.example.json",
+      "bytes": 1010,
+      "sha256": "bf492c3c1017580569601a22bff939122e841220b430db3806e4dd9deff46d6d"
+    },
+    {
+      "path": "config/native-rule.template.json",
+      "bytes": 1011,
+      "sha256": "ee2fa0ed50fc580fcd259f85be1214d96dd9b1dbfbb9cfea52ad0f5227728529"
+    },
+    {
+      "path": "config/person_on_railway_tracks.example.json",
+      "bytes": 1031,
+      "sha256": "8a0d491b94b550d149b98d058f061ac2d8c587eeb7dc12e1431f4462c104e866"
+    },
+    {
+      "path": "config/school_gate_break_in_night.example.json",
+      "bytes": 1039,
+      "sha256": "b11c8f9ba25dabb23c47a4289a4a2972b8190fd0cce38e7dcf090bddf979d97b"
+    },
+    {
+      "path": "requirements.lock",
+      "bytes": 199,
+      "sha256": "f57a460b74c0082371130253ff177a8d0e610387d9b61d5c78121f3998c34ba0"
+    },
+    {
+      "path": "scripts/setup_native.ps1",
+      "bytes": 8379,
+      "sha256": "5bb29f68fb99c67a44f9591bf9719cf6585d9b86d6ad5c5c1e0ad18aa048515d"
+    },
+    {
+      "path": "submission/JUDGE_ACCESS.md",
+      "bytes": 1887,
+      "sha256": "dc96084fbe70a8b1e2767e3f0213b5fb1919d230145fdae66dd498e13153048a"
+    },
+    {
+      "path": "submission/REPRODUCE.md",
+      "bytes": 9393,
+      "sha256": "1e2788f149c785dd555a0ff8c6c1f2c5bfc4f15e088ce09a115391519b3d9bfc"
+    },
+    {
+      "path": "submission/RESULTS.md",
+      "bytes": 2483,
+      "sha256": "6860ebb1a01e5ec37a55f7b80458d0ac497396870d44ac3f8b8b5213d7941228"
+    },
+    {
+      "path": "submission/THIRD_PARTY_NOTICES.txt",
+      "bytes": 23559,
+      "sha256": "f794c38c654a1ef14358a3ebd89b3fe987bc727a607f1f35de3d57e8844e1305"
+    },
+    {
+      "path": "tests/test_connector.py",
+      "bytes": 22146,
+      "sha256": "c5b86515d9f7a6ebb6ad36dceca92b1d9e93c609c5e3d9d86b36afd03d59f7ca"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "_notice": "EXAMPLE ONLY. UUIDs are synthetic. No live configuration has been approved.",
+  "base_url": "https://p042",
+  "allow_tailnet_http": false,
+  "scenario": "school_gate_break_in_night",
+  "camera_id": "22222222-1111-4111-8111-111111111111",
+  "trigger_event_type_id": "22222222-2222-4222-8222-222222222222",
+  "watch_event_type_ids": [
+    "22222222-2222-4222-8222-222222222222",
+    "22222222-3333-4333-8333-333333333333"
+  ],
+  "gateway_prompt": "What visible activity occurs at the school gate in this clip? Start your answer with GATE_INTERACTION if a person visibly manipulates the gate or padlock, GATE_CLEAR if no such interaction occurs, or GATE_UNCERTAIN if darkness or occlusion prevents a conclusion. Then describe the visible interaction in one sentence. Do not infer identity, intent or criminality.",
+  "before_seconds": 20,
+  "after_seconds": 10,
+  "daily_test_cap": 10,
+  "cooldown_seconds": 120,
+  "remote_setup_approved": false,
+  "gateway_contract_verified": false,
+  "event_time_basis": "server_receipt"
+}

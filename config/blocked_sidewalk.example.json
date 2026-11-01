@@ -1,0 +1,20 @@
+{
+  "_notice": "EXAMPLE ONLY. UUIDs are synthetic. No live configuration has been approved.",
+  "base_url": "https://p042",
+  "allow_tailnet_http": false,
+  "scenario": "blocked_sidewalk",
+  "camera_id": "33333333-1111-4111-8111-111111111111",
+  "trigger_event_type_id": "33333333-2222-4222-8222-222222222222",
+  "watch_event_type_ids": [
+    "33333333-2222-4222-8222-222222222222",
+    "33333333-3333-4333-8333-333333333333"
+  ],
+  "gateway_prompt": "Is the sidewalk obstructed by a fallen e-scooter or overturned bin in this clip? Start your answer with SIDEWALK_BLOCKED if such an object visibly obstructs the walkway, SIDEWALK_CLEAR if the path is clear, or SIDEWALK_UNCERTAIN if the view is unclear. Then give one sentence describing the object, its position and the remaining walking space.",
+  "before_seconds": 20,
+  "after_seconds": 10,
+  "daily_test_cap": 10,
+  "cooldown_seconds": 120,
+  "remote_setup_approved": false,
+  "gateway_contract_verified": false,
+  "event_time_basis": "server_receipt"
+}
