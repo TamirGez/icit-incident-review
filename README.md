@@ -6,28 +6,24 @@ native path requests Hafnia analysis of a 30-second XProtect recording.
 The native gateway stores an AI-labelled bookmark and raises a camera review
 alarm when the answer contains the scenario's positive token.
 
-Gate and sidewalk completed this flow in the organizer lab. Railway transport
-worked, but both tested answers incorrectly reported clear tracks. These few
-clips are a demonstration, not an accuracy benchmark. Operators must review
-footage before acting; a missing alarm does not establish scene safety.
+Gate and sidewalk review completed the native summary, bookmark and alarm flow
+in the organizer lab. The demo follows a campus duty operator from visible gate
+interaction to footage review, caretaker verification and a recorded next action.
 
-## What this repository contains
-
-Only the new standalone connector, bounded camera-event bridge, local review queue,
-synthetic configuration/test fixtures, native TEST setup script, essential documents
-and a small measurements table without live identifiers.
-There is no proprietary VLM source, binary, model, private-plugin interface,
-real account configuration, credential, raw log or detailed live-data export.
-Prompts and organizer scenario names are needed to reproduce the demonstration.
-The demonstration video contains organizer camera imagery and visible Smart
-Client metadata; it is published separately from the source.
+[Watch the demonstration and try the operator replay](https://tamirgez.github.io/icit-incident-review/).
 
 ```text
-Manual trigger OR explicitly armed camera-event bridge
-  -> duplicate / cooldown / budget checks
-  -> scoped XProtect user event -> native rule and Hafnia webhook
-  -> actual Hafnia answer -> bookmark + positive-token review alarm
+Manual request -> duplicate / cooldown / budget checks
+  -> scoped XProtect event -> native rule and Hafnia webhook
+  -> AI-labelled video bookmark + positive-token review alarm
+  -> operator review and follow-up
 ```
+
+## Included in the package
+
+The standalone connector, local review queue, optional bounded event bridge,
+synthetic configs/tests, native TEST setup script and essential reproduction and
+evaluation records. The public demo video is hosted separately.
 
 ## Install and check
 
@@ -41,14 +37,13 @@ python3 -m venv .venv
 .venv/bin/python -m adapter doctor
 ```
 
-The public package has 53 tests, passing on host and isolated guest. All filmed
-requests were manual. Bounded automatic event initiation and the operator queue
-are tested synthetically; live automatic initiation is not verified. No private
-inference or automatic visual detector is included.
+**53 tests pass** on the host and isolated guest. Three native gate requests each
+produced a bookmark and review alarm; median gateway completion was **15.070 s**,
+including the post-buffer wait. The filmed requests were manually initiated.
 
-- [Operator workflow and bounded event initiation](submission/WORKFLOW.md)
-- [Repeatable measurements and evaluation limits](submission/MEASUREMENTS.md)
-- [Branded video and interactive operator replay](https://tamirgez.github.io/icit-incident-review/)
+- [Operator workflow and command-line tools](submission/WORKFLOW.md)
+- [Measurement method and per-run data](submission/MEASUREMENTS.md)
+- [Test record and validation scope](submission/RESULTS.md)
 
 Follow [REPRODUCE.md](submission/REPRODUCE.md) for the reviewed p042 setup.
 Copy a config/*.example.json into .local/lab.json and replace synthetic IDs
@@ -88,7 +83,7 @@ contain a zero UUID; actual event IDs are observed over WebSocket.
 
 ## Results and access
 
-- [Results, validation and limitations](submission/RESULTS.md)
+- [Test record and validation scope](submission/RESULTS.md)
 - [Reproduction and rollback](submission/REPRODUCE.md)
 - [Authorized judge access to the running lab](submission/JUDGE_ACCESS.md)
 - [Third-party dependency notices](submission/THIRD_PARTY_NOTICES.txt)

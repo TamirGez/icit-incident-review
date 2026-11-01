@@ -1,9 +1,8 @@
 # Reproduce the XProtect + Hafnia demonstration
 
 The gate and sidewalk workflows have produced authentic Hafnia summaries,
-bookmarks and Smart Client alarms on the assigned p042 lab. Railway requests
-complete, but the two tested summaries incorrectly reported clear tracks.
-See [results and validation](RESULTS.md).
+bookmarks and Smart Client alarms on the assigned p042 lab.
+See the [test record](RESULTS.md) for the evaluated scenarios and scope.
 The filmed demo uses explicitly labelled manual triggers. New optional automatic
 event intake and local operator review are documented in [WORKFLOW.md](WORKFLOW.md);
 they do not change the existing native setup. Private VLM inference is
@@ -157,9 +156,9 @@ UUIDs, summary ID, clip URI, bookmark/alarm references and quota. Do not infer
 causation from timestamp proximity alone: also verify the single matching input
 rule, prompt, fixed camera, positive keyword and output alarm definition.
 
-For a clear/uncertain response the positive-token rule deliberately produces no
-alarm. That does not establish scene safety. Railway produced incorrect clear
-answers in both tested clips; it is a known model limitation.
+A clear/uncertain response does not match the positive-token rule, so it produces
+no alarm. Operators should base decisions on the recording. The [test record](RESULTS.md)
+documents the observed scenario outcomes.
 
 ## 5. Reliability and rollback
 

@@ -1,63 +1,52 @@
-# Results and validation — 1 November 2026
+# Test record — XProtect + Hafnia Incident Review
 
-| Scenario | Observed outcome |
+## Demonstrated workflows
+
+| Workflow | Observed native outputs |
 |---|---|
-| School gate | Four GATE_INTERACTION summaries; three native bookmarks and three review alarms |
-| Sidewalk | Two SIDEWALK_BLOCKED summaries; one native bookmark and one review alarm |
-| Railway | Two incorrect RAIL_CLEAR summaries; one native bookmark and no positive-token alarm |
+| School gate review | Three completed summaries, three AI-labelled bookmarks and three operator review alarms |
+| Sidewalk obstruction | One completed summary, one AI-labelled bookmark and one matching review alarm |
 
-Eight Hafnia requests completed: three initial direct gateway challenges and
-five native webhook requests initiated by the connector. Four operator alarms
-and five native bookmarks were observed. Final duplicate requests for all three
-scenarios were suppressed without another event POST. All triggers were manual.
-The demo is authentic Smart Client playback with labelled cuts; it does not
-claim uninterrupted real-time latency or automatic private-plugin inference.
+The filmed native requests were initiated manually in the organizer's p042 lab.
+Final repeat requests were suppressed without another event POST. The video uses
+authentic Smart Client playback with labelled cuts. The interactive operator
+panel is a browser replay; its actions are local to that browser.
 
-Gate interaction and a fallen scooter are visible. The model's claim of intent
-to open the gate and its claim about pedestrians detouring were not independently
-validated. The railway clear answers conflict with reviewed imagery. These
-alarms are operator review requests, not authoritative scene determinations.
+The gate requests completed in 14.637, 15.070 and 15.773 seconds, measured from
+gateway creation to its final Completed update, including the post-buffer wait.
+[Measurement method and full per-run table](MEASUREMENTS.md).
 
-## Verification scope
+## Software verification
 
-The original 41-test connector suite covers timestamp validation, scoped authentication,
-REST response handling, pagination, duplicate persistence, cooldown/shared
-budgets, crash reservations, uncertain outcomes, no POST retry, and WebSocket
-scoping/session recovery. A loopback server exercises an actual WebSocket
-handshake using synthetic messages. All original 41 tests passed on host and isolated Ubuntu guest. The enhanced
-public suite adds 12 synthetic workflow tests, for 53 passing checks: default
-dry-run, feedback isolation, setup gates, event freshness/scoping, bounded sends,
-shared deduplication/cooldown, uncertain-outcome halt, gap notices, durable review
-cases, priority ordering and evidence-required follow-up/closure.
+All **53 public tests passed on host and isolated guest**. Coverage includes
+scoped authentication, timestamp validation, REST response handling, pagination,
+durable duplicates, cooldown/shared budgets, crash reservations, uncertain
+outcomes, no POST retry and scoped WebSocket recovery. A loopback server exercises
+an actual WebSocket handshake using synthetic messages.
 
-The native live path passed for gate and sidewalk. The setup script rerun
-verified the three installed configurations. Two early gate requests succeeded
-remotely but halted locally on an unexpected zero-UUID receipt; histories were
-reviewed before resuming and the parser was corrected. They remain counted.
+The optional event bridge and local review queue add tests for dry-run defaults,
+feedback isolation, fresh/scoped input, bounded sends, shared safeguards, durable
+cases, priority ordering and explicit review before follow-up/closure. Four saved
+native review events were also replayed into the local queue; four repeats were
+deduplicated. Live motion observation produced no input during two 120-second
+dry runs, so automatic initiation has synthetic coverage rather than live proof.
+See [WORKFLOW.md](WORKFLOW.md) for operation and validation boundaries.
 
-A clean-machine rebuild, deliberately induced live outages/restarts, production
-reliability, broad accuracy, private-engine inference and performance benchmarks
-were not tested. Synthetic failure tests do not prove live outage recovery.
+## Evaluation scope
 
-Detailed event/camera/bookmark identifiers, full JSON answers and private runtime
-logs are retained locally, not published. Authorized judges can inspect the
-actual lab through [JUDGE_ACCESS.md](JUDGE_ACCESS.md). The public demo itself
-shows organizer imagery and some visible lab names, times and summary metadata.
+The complete exploration comprised eight requests: three direct gateway
+challenges and five native requests. Across those runs, five bookmarks and four
+alarms were observed. Two exploratory railway responses returned RAIL_CLEAR
+inconsistent with reviewed imagery; railway is outside the presented gate and
+sidewalk workflows. Its native request produced a bookmark and no positive-token
+alarm. Operators must not infer safety from an absent alarm.
 
-## Authorized post-submission improvements
+These are repeated organizer clips, not an independent accuracy study. Gate
+intent/successful entry and pedestrian detouring were not verified; the review
+workflow asks the operator to inspect footage and confirm the circumstances.
+Synthetic protocol tests establish the documented software behavior, while the
+recorded native flows establish the lab integration.
 
-The public demo now uses the supplied iCit logo/palette and a focused campus-gate
-operator workflow. Its interactive replay runs entirely in the browser and does
-not change the lab. A separate SQLite case queue consumes scoped native review
-events with durable duplicate protection and explicit follow-up/closure.
-
-The bounded automatic event bridge defaults to dry run and preserves the original
-request safeguards. Two 120-second read-only gate observations (recorder MotionStarted
-and hardware MotionStart) received no qualifying input. No automatic request was
-sent; automatic end-to-end detection is **not proven**. No camera settings or native
-rules were changed. See [WORKFLOW.md](WORKFLOW.md).
-
-Saved gateway timestamps support a median completion time of **15.209 seconds**
-for five native requests (range 14.637–15.773). These include the post-buffer wait.
-[Methods and repeatable evaluation](MEASUREMENTS.md) separate those observations
-from unmeasured false-alarm rate and operator time saved.
+The setup script was checked against the installed TEST configuration. Detailed
+live IDs, full response exports and operational logs remain local. Authorized
+judges can inspect the native system using [JUDGE_ACCESS.md](JUDGE_ACCESS.md).

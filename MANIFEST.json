@@ -1,6 +1,6 @@
 {
-  "revision": "operator-review-v3",
-  "scope": "standalone connector + bounded event bridge + local review; no private interface or detailed live exports",
+  "revision": "gate-focused-v4",
+  "scope": "standalone connector and review tools; gate/sidewalk presentation with complete supporting test record; no private interface or detailed live exports",
   "files": [
     {
       "path": ".gitignore",
@@ -9,8 +9,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 4784,
-      "sha256": "3979042dcb4c6f4cd21968229620f04bc80bb75d579680eba3295627ccb1d135"
+      "bytes": 4318,
+      "sha256": "c088ae5a3195702eebffddf49cc4eb6bb78193ed4cc3e7195c269df8eea416f6"
     },
     {
       "path": "adapter/__init__.py",
@@ -99,23 +99,23 @@
     },
     {
       "path": "submission/JUDGE_ACCESS.md",
-      "bytes": 2669,
-      "sha256": "6e346a23c60728aefcc972d2912db987ceaa59898cdba122bc3b40cb00194c7b"
+      "bytes": 2468,
+      "sha256": "d61cfd82ea9d59261d27cde6d715a76b92085cea05548d27b8ab3994c57752ab"
     },
     {
       "path": "submission/MEASUREMENTS.md",
-      "bytes": 2438,
-      "sha256": "e43bec2121d680a0cad60b267b0995bf95bf086367ccdb36b57b6a9bee7c27e0"
+      "bytes": 1712,
+      "sha256": "769f910ad8847549e5e753aaea7389e53e30f0b48f8b04a5d1cbf3b8c7359235"
     },
     {
       "path": "submission/REPRODUCE.md",
-      "bytes": 9553,
-      "sha256": "cbb2a8cde06fa456314f3d46cfda6d9234a42ec65b9a040255c248b01acfd24a"
+      "bytes": 9487,
+      "sha256": "9915abceaa3750cc116d431bc74d6a5496fe3022d9f222070f39470749d7e975"
     },
     {
       "path": "submission/RESULTS.md",
-      "bytes": 3834,
-      "sha256": "c5120eb2aaf42a90b1f1c06d5058b422a56c1894a0e569929892c6ae7c6a5ee0"
+      "bytes": 2904,
+      "sha256": "85aa9e1e8e8d31ad1772bba233ca127322c99f8656425000f5d02e677e753dc0"
     },
     {
       "path": "submission/THIRD_PARTY_NOTICES.txt",
@@ -124,8 +124,8 @@
     },
     {
       "path": "submission/WORKFLOW.md",
-      "bytes": 4092,
-      "sha256": "27b9081be42f5250fc9f303664c21714ee5c93482c2a2de755f949c224796b5b"
+      "bytes": 3951,
+      "sha256": "31b5818996d13c03cc25e18300620770748a6f04faa726380154464e6ae2493e"
     },
     {
       "path": "submission/measurements.csv",

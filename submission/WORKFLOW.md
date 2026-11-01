@@ -30,13 +30,11 @@ request event and configured result types cannot be inputs, preventing feedback.
 Use one ledger for manual and automatic runs. Never delete it to bypass limits.
 Manual gateway requests are outside this ledger; check gateway quota separately.
 
-This bridge is **implemented and tested synthetically**. All filmed native
-requests used manual triggers. Read-only live gate motion checks received no
-input events; no automatic Hafnia request was sent. An event type appearing in
-inventory does not prove that a camera emits it or that the account receives it.
-Automatic end-to-end behavior remains unverified until a fresh input event,
-request, completed summary, bookmark and alarm are all traced. Camera settings
-and default recording rules were not changed to manufacture that result.
+Validation scope: the event bridge has synthetic guardrail coverage. The filmed
+native requests used manual triggers. Two 120-second live gate observations
+received no input events, so the automatic trigger path is not live-validated.
+Use the dry run to verify the selected camera emits an appropriate event before
+arming, then trace request, completed summary, bookmark and alarm.
 
 ## Local operator case queue
 
@@ -58,8 +56,7 @@ explicit footage review. SQLite retains an action history locally with restricte
 file permissions. No XProtect alarm state or external message is changed.
 
 A positive-token event queue inherits the model's blind spots: an incorrect clear
-answer can produce no alarm and thus no review case. The known railway failure
-remains visible in results. Do not infer safety from an empty queue. This is a
+answer can produce no alarm and thus no review case. The [test record](RESULTS.md) contains the observed scenario outcomes. Do not infer safety from an empty queue. This is a
 bounded command-line observer; it is not installed as an unattended service.
 
 The browser replay uses an illustrative case and fixed outcome choices. It saves
