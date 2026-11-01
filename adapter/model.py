@@ -64,7 +64,7 @@ class Trigger:
         object.__setattr__(self, "event_id", guid(self.event_id))
         object.__setattr__(self, "camera_id", guid(self.camera_id))
         object.__setattr__(self, "timestamp_utc", iso(utc(self.timestamp_utc)))
-        if self.origin not in {"manual", "synthetic"}:
+        if self.origin not in {"manual", "synthetic", "xprotect_event"}:
             raise ValueError("Unknown trigger origin")
         if self.label not in PROMPTS:
             raise ValueError("Unknown demo scenario")

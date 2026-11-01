@@ -4,7 +4,9 @@ The gate and sidewalk workflows have produced authentic Hafnia summaries,
 bookmarks and Smart Client alarms on the assigned p042 lab. Railway requests
 complete, but the two tested summaries incorrectly reported clear tracks.
 See [results and validation](RESULTS.md).
-This demo uses explicitly labelled manual triggers. Private VLM inference is
+The filmed demo uses explicitly labelled manual triggers. New optional automatic
+event intake and local operator review are documented in [WORKFLOW.md](WORKFLOW.md);
+they do not change the existing native setup. Private VLM inference is
 not part of the verified end-to-end path.
 
 ## 1. Environment and access

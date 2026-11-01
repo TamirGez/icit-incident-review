@@ -1,6 +1,8 @@
 # iCit Incident Review: XProtect + Hafnia
 
-A manual trigger requests Hafnia analysis of a 30-second XProtect recording.
+A campus duty operator can review a school-gate interaction, inspect Hafnia context,
+check authorized maintenance with the caretaker and record follow-up. The proven
+native path requests Hafnia analysis of a 30-second XProtect recording.
 The native gateway stores an AI-labelled bookmark and raises a camera review
 alarm when the answer contains the scenario's positive token.
 
@@ -11,8 +13,9 @@ footage before acting; a missing alarm does not establish scene safety.
 
 ## What this repository contains
 
-Only the new standalone manual-trigger connector, synthetic configuration/test
-fixtures, native TEST setup script and essential reproduction/results documents.
+Only the new standalone connector, bounded camera-event bridge, local review queue,
+synthetic configuration/test fixtures, native TEST setup script, essential documents
+and a small measurements table without live identifiers.
 There is no proprietary VLM source, binary, model, private-plugin interface,
 real account configuration, credential, raw log or detailed live-data export.
 Prompts and organizer scenario names are needed to reproduce the demonstration.
@@ -20,7 +23,8 @@ The demonstration video contains organizer camera imagery and visible Smart
 Client metadata; it is published separately from the source.
 
 ```text
-Manual trigger -> duplicate / cooldown / budget checks
+Manual trigger OR explicitly armed camera-event bridge
+  -> duplicate / cooldown / budget checks
   -> scoped XProtect user event -> native rule and Hafnia webhook
   -> actual Hafnia answer -> bookmark + positive-token review alarm
 ```
@@ -37,8 +41,14 @@ python3 -m venv .venv
 .venv/bin/python -m adapter doctor
 ```
 
-The public package has 41 tests. Automatic detection and private inference are
-not part of this demonstration.
+The public package has 53 tests, passing on host and isolated guest. All filmed
+requests were manual. Bounded automatic event initiation and the operator queue
+are tested synthetically; live automatic initiation is not verified. No private
+inference or automatic visual detector is included.
+
+- [Operator workflow and bounded event initiation](submission/WORKFLOW.md)
+- [Repeatable measurements and evaluation limits](submission/MEASUREMENTS.md)
+- [Branded video and interactive operator replay](https://tamirgez.github.io/icit-incident-review/)
 
 Follow [REPRODUCE.md](submission/REPRODUCE.md) for the reviewed p042 setup.
 Copy a config/*.example.json into .local/lab.json and replace synthetic IDs

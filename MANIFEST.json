@@ -1,5 +1,6 @@
 {
-  "scope": "minimal manual-trigger source; no live data exports or private interface",
+  "revision": "operator-review-v3",
+  "scope": "standalone connector + bounded event bridge + local review; no private interface or detailed live exports",
   "files": [
     {
       "path": ".gitignore",
@@ -8,8 +9,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 4080,
-      "sha256": "30636774e9536588022393181c9e1edd1729f4edf8cd4dd1d7a48ca8c76a50f8"
+      "bytes": 4784,
+      "sha256": "3979042dcb4c6f4cd21968229620f04bc80bb75d579680eba3295627ccb1d135"
     },
     {
       "path": "adapter/__init__.py",
@@ -18,13 +19,18 @@
     },
     {
       "path": "adapter/__main__.py",
-      "bytes": 6600,
-      "sha256": "e7080650d59c2fc2d79b3f059cbad85b7cb15a773aaa5d18c36c5feb3e4fd5f3"
+      "bytes": 9107,
+      "sha256": "7e8d06fc03ae908a8207bda7521ef829d9e0d82fe084c26e82404bb95c6f643d"
     },
     {
       "path": "adapter/access.py",
       "bytes": 1575,
       "sha256": "a6885fc37122eb8619d55cfcdd4dcac135ae4bc7a42fdc60c151098a4e675975"
+    },
+    {
+      "path": "adapter/automation.py",
+      "bytes": 2656,
+      "sha256": "6af76126570f82677630b6805a15b76dec0961ef7266e51da13b20a04ecaa23d"
     },
     {
       "path": "adapter/ledger.py",
@@ -33,8 +39,13 @@
     },
     {
       "path": "adapter/model.py",
-      "bytes": 4677,
-      "sha256": "730894712f0829e0447ed77daa9d4c53489d4d00740693bc9b90940bb3e6bc0d"
+      "bytes": 4695,
+      "sha256": "a5c9d79800edfcbed0d497e77f8536a0a39eef5d098355e11cd787f1cc28efa1"
+    },
+    {
+      "path": "adapter/review.py",
+      "bytes": 4161,
+      "sha256": "36f5aa5e2071306bfb64d260b19196d99642583bb695346ead9c45432650aeae"
     },
     {
       "path": "adapter/service.py",
@@ -77,24 +88,34 @@
       "sha256": "f57a460b74c0082371130253ff177a8d0e610387d9b61d5c78121f3998c34ba0"
     },
     {
+      "path": "scripts/evaluate.py",
+      "bytes": 1496,
+      "sha256": "8178982c2f865941fedfbed069be87d2cbd564d1b4cb6dab14081745c036d50f"
+    },
+    {
       "path": "scripts/setup_native.ps1",
       "bytes": 8379,
       "sha256": "5bb29f68fb99c67a44f9591bf9719cf6585d9b86d6ad5c5c1e0ad18aa048515d"
     },
     {
       "path": "submission/JUDGE_ACCESS.md",
-      "bytes": 1887,
-      "sha256": "dc96084fbe70a8b1e2767e3f0213b5fb1919d230145fdae66dd498e13153048a"
+      "bytes": 2669,
+      "sha256": "6e346a23c60728aefcc972d2912db987ceaa59898cdba122bc3b40cb00194c7b"
+    },
+    {
+      "path": "submission/MEASUREMENTS.md",
+      "bytes": 2438,
+      "sha256": "e43bec2121d680a0cad60b267b0995bf95bf086367ccdb36b57b6a9bee7c27e0"
     },
     {
       "path": "submission/REPRODUCE.md",
-      "bytes": 9393,
-      "sha256": "1e2788f149c785dd555a0ff8c6c1f2c5bfc4f15e088ce09a115391519b3d9bfc"
+      "bytes": 9553,
+      "sha256": "cbb2a8cde06fa456314f3d46cfda6d9234a42ec65b9a040255c248b01acfd24a"
     },
     {
       "path": "submission/RESULTS.md",
-      "bytes": 2483,
-      "sha256": "6860ebb1a01e5ec37a55f7b80458d0ac497396870d44ac3f8b8b5213d7941228"
+      "bytes": 3834,
+      "sha256": "c5120eb2aaf42a90b1f1c06d5058b422a56c1894a0e569929892c6ae7c6a5ee0"
     },
     {
       "path": "submission/THIRD_PARTY_NOTICES.txt",
@@ -102,9 +123,24 @@
       "sha256": "f794c38c654a1ef14358a3ebd89b3fe987bc727a607f1f35de3d57e8844e1305"
     },
     {
+      "path": "submission/WORKFLOW.md",
+      "bytes": 4092,
+      "sha256": "27b9081be42f5250fc9f303664c21714ee5c93482c2a2de755f949c224796b5b"
+    },
+    {
+      "path": "submission/measurements.csv",
+      "bytes": 597,
+      "sha256": "b0d2ec87ae08ea2369017d3345fc3e45335d4584408dcc23f6ed662c972c992f"
+    },
+    {
       "path": "tests/test_connector.py",
       "bytes": 22146,
       "sha256": "c5b86515d9f7a6ebb6ad36dceca92b1d9e93c609c5e3d9d86b36afd03d59f7ca"
+    },
+    {
+      "path": "tests/test_workflow.py",
+      "bytes": 6457,
+      "sha256": "733ae6ab301c6eeb1d5f2b42b11fdbd64ab011c620baf9eb4ff0594ac378a190"
     }
   ]
 }

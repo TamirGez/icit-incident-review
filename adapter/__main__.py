@@ -3,6 +3,7 @@ import getpass
 import json
 import os
 import sys
+import sqlite3
 from datetime import datetime, timedelta
 from pathlib import Path
 from uuid import uuid4
@@ -13,6 +14,8 @@ from .model import Trigger, UTC, PROMPTS, guid, iso
 from .service import submit
 from .stream import EventWatcher, event_metadata
 from .xprotect import XProtect, APIError
+from .automation import EventInitiator, RunComplete
+from .review import ReviewQueue
 
 
 def emit(value):
@@ -55,13 +58,25 @@ def main(argv=None):
     send.add_argument("trigger_file")
     watch = sub.add_parser("watch", help="Read-only, bounded event subscription")
     watch.add_argument("--seconds", type=int, default=120)
+    watch.add_argument("--review-db", help="Create local operator cases from scoped camera review events")
+    auto = sub.add_parser("automate", help="Bounded camera-event initiation; dry run unless --armed")
+    auto.add_argument("--input-event-type", required=True)
+    auto.add_argument("--seconds", type=int, default=120)
+    auto.add_argument("--max-sends", type=int, default=1)
+    auto.add_argument("--armed", action="store_true")
+    review = sub.add_parser("review", help="Local operator queue; never changes XProtect")
+    review.add_argument("action", choices=["list", "acknowledge", "follow_up", "close"])
+    review.add_argument("--db", default=".local/review.sqlite3")
+    review.add_argument("--case")
+    review.add_argument("--note", default="")
+    review.add_argument("--footage-reviewed", action="store_true")
     event = sub.add_parser("event", help="Read one XProtect event as sanitized metadata")
     event.add_argument("event_id")
     sub.add_parser("status", help="Local reservations, outcomes and halt state")
     resume = sub.add_parser("resume", help="Clear POST-error halt after checking gateway and event history")
     resume.add_argument("--reviewed-history", action="store_true", required=True)
     args = parser.parse_args(argv)
-    client, ledger = None, None
+    client, ledger, queue = None, None, None
     try:
         if args.command == "doctor":
             access = lab_access()
@@ -72,6 +87,11 @@ def main(argv=None):
             emit(Trigger(str(uuid4()), args.camera, t, "manual", label=args.scenario,
                          prompt=PROMPTS[args.scenario]).record())
             return 0
+        if args.command == "review":
+            queue = ReviewQueue(args.db)
+            emit(queue.report() if args.action == "list" else queue.transition(
+                args.case, args.action, args.note, footage_reviewed=args.footage_reviewed))
+            return 0
         if args.command in ("status", "resume"):
             ledger = Ledger(args.ledger)
             if args.command == "resume":
@@ -79,6 +99,12 @@ def main(argv=None):
             emit(ledger.report())
             return 0
         config = load_json(args.config)
+        if args.command == "automate":
+            if not 1 <= args.seconds <= 600:
+                raise ValueError("Watch duration is 1..600 seconds")
+            # Validate input isolation and arming before credentials or network access.
+            initiator = EventInitiator(None, None, config, args.input_event_type,
+                                      armed=args.armed, max_sends=args.max_sends)
         if args.command in ("send", "plan"):
             trigger = Trigger(**load_json(args.trigger_file))
             if args.command == "plan":
@@ -101,9 +127,25 @@ def main(argv=None):
         elif args.command == "event":
             emit(event_metadata(client.event(args.event_id)))
         elif args.command == "watch":
+            if args.review_db:
+                queue = ReviewQueue(args.review_db)
             EventWatcher(client, config["camera_id"], config["watch_event_type_ids"],
                          user_event_ids=[config["trigger_event_type_id"]]).watch(
-                emit, duration=args.seconds)
+                (lambda e: emit(queue.ingest(e, config))) if queue else emit, duration=args.seconds)
+        elif args.command == "automate":
+            ledger = Ledger(args.ledger) if args.armed else None
+            initiator.client, initiator.ledger = client, ledger
+            def receive(e):
+                emit(initiator.accept(e))
+                if initiator.sent >= initiator.max_sends:
+                    raise RunComplete
+            try:
+                EventWatcher(client, config["camera_id"], [args.input_event_type]).watch(
+                    receive, duration=args.seconds)
+            except RunComplete:
+                pass
+            emit({"status": "automatic_run_finished", "sent": initiator.sent,
+                  "mode": "armed" if args.armed else "dry_run"})
         elif args.command == "send":
             config["camera_id"] = guid(config["camera_id"])
             config["trigger_event_type_id"] = guid(config["trigger_event_type_id"])
@@ -119,7 +161,7 @@ def main(argv=None):
             error["receipt"] = exc.receipt
         emit(error)
         return 2
-    except (ValueError, KeyError, TypeError, OSError, EOFError) as exc:
+    except (ValueError, KeyError, TypeError, OSError, EOFError, sqlite3.Error) as exc:
         # Do not print raw input, file paths or server bodies, which can contain secrets.
         emit({"status": "invalid_input_or_configuration", "error_type": type(exc).__name__})
         return 2
@@ -130,6 +172,8 @@ def main(argv=None):
             client.close()
         if ledger:
             ledger.close()
+        if queue:
+            queue.close()
 
 
 if __name__ == "__main__":

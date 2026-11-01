@@ -20,12 +20,15 @@ alarms are operator review requests, not authoritative scene determinations.
 
 ## Verification scope
 
-The 41-test public suite covers timestamp validation, scoped authentication,
+The original 41-test connector suite covers timestamp validation, scoped authentication,
 REST response handling, pagination, duplicate persistence, cooldown/shared
 budgets, crash reservations, uncertain outcomes, no POST retry, and WebSocket
 scoping/session recovery. A loopback server exercises an actual WebSocket
-handshake using synthetic messages. All 41 tests passed on the host and the
-isolated Ubuntu guest for this reduced publication variant.
+handshake using synthetic messages. All original 41 tests passed on host and isolated Ubuntu guest. The enhanced
+public suite adds 12 synthetic workflow tests, for 53 passing checks: default
+dry-run, feedback isolation, setup gates, event freshness/scoping, bounded sends,
+shared deduplication/cooldown, uncertain-outcome halt, gap notices, durable review
+cases, priority ordering and evidence-required follow-up/closure.
 
 The native live path passed for gate and sidewalk. The setup script rerun
 verified the three installed configurations. Two early gate requests succeeded
@@ -40,3 +43,21 @@ Detailed event/camera/bookmark identifiers, full JSON answers and private runtim
 logs are retained locally, not published. Authorized judges can inspect the
 actual lab through [JUDGE_ACCESS.md](JUDGE_ACCESS.md). The public demo itself
 shows organizer imagery and some visible lab names, times and summary metadata.
+
+## Authorized post-submission improvements
+
+The public demo now uses the supplied iCit logo/palette and a focused campus-gate
+operator workflow. Its interactive replay runs entirely in the browser and does
+not change the lab. A separate SQLite case queue consumes scoped native review
+events with durable duplicate protection and explicit follow-up/closure.
+
+The bounded automatic event bridge defaults to dry run and preserves the original
+request safeguards. Two 120-second read-only gate observations (recorder MotionStarted
+and hardware MotionStart) received no qualifying input. No automatic request was
+sent; automatic end-to-end detection is **not proven**. No camera settings or native
+rules were changed. See [WORKFLOW.md](WORKFLOW.md).
+
+Saved gateway timestamps support a median completion time of **15.209 seconds**
+for five native requests (range 14.637–15.773). These include the post-buffer wait.
+[Methods and repeatable evaluation](MEASUREMENTS.md) separate those observations
+from unmeasured false-alarm rate and operator time saved.

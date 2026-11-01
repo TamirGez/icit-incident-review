@@ -1,0 +1,9 @@
+run,scenario,route,expected_token,observed_token,gateway_elapsed_seconds
+gate-direct,gate,direct,GATE_INTERACTION,GATE_INTERACTION,
+sidewalk-direct,sidewalk,direct,SIDEWALK_BLOCKED,SIDEWALK_BLOCKED,
+railway-direct,railway,direct,RAIL_INTRUSION,RAIL_CLEAR,
+gate-native-1,gate,native,GATE_INTERACTION,GATE_INTERACTION,14.637
+gate-native-2,gate,native,GATE_INTERACTION,GATE_INTERACTION,15.070
+gate-native-3,gate,native,GATE_INTERACTION,GATE_INTERACTION,15.773
+sidewalk-native-1,sidewalk,native,SIDEWALK_BLOCKED,SIDEWALK_BLOCKED,15.209
+railway-native-1,railway,native,RAIL_INTRUSION,RAIL_CLEAR,15.342

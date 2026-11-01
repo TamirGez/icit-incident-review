@@ -28,3 +28,16 @@ VM uptime depends on the participant workstation. Organizer lab availability,
 recording retention and judge network access remain external dependencies.
 
 See [results and validation](RESULTS.md) for the known railway failure and test limits.
+
+## Durable public evidence and optional review tools
+
+The lab recording retention observed during setup was **24 hours**. Older clips
+may expire even when summary/history or alarm records remain. The public 2:45
+video preserves the demonstrated footage and result; do not assume old timestamps
+remain playable. A fresh run needs authorized access and quota/freshness checks.
+
+The public page also offers a labelled browser replay of a gate review case.
+The new event bridge and local review queue are documented in [WORKFLOW.md](WORKFLOW.md).
+They are optional CLI tools, not an unattended installed service. Automatic
+initiation has synthetic coverage but did not receive a live input in the bounded
+gate observation checks. The native p042 configuration remains the proven path.
