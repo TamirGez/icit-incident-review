@@ -1,4 +1,4 @@
-"""Synthetic guardrails: these tests make no live detection or accuracy claims."""
+"""Event intake and operator workflow tests using synthetic fixtures."""
 import tempfile
 import unittest
 from datetime import timedelta

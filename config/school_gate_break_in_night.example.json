@@ -1,5 +1,5 @@
 {
-  "_notice": "EXAMPLE ONLY. UUIDs are synthetic. No live configuration has been approved.",
+  "_notice": "Example configuration. Replace placeholder UUIDs and verify the native setup before use.",
   "base_url": "https://p042",
   "allow_tailnet_http": false,
   "scenario": "school_gate_break_in_night",

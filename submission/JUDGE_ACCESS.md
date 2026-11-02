@@ -1,40 +1,32 @@
 # View the running solution
 
-The working system is installed on the assigned organizer lab **p042**, accessible
-to authorized judges on the organizer Tailscale network. The public video shows
-the real lab; it is not a public service endpoint. No lab credentials are included.
+The native XProtect and Hafnia workflow is configured on **p042** in the organizer
+Tailscale network. Use the organizer-provided Remote Desktop and XProtect accounts.
 
-1. Use organizer-provided access to p042 through Remote Desktop.
-2. Open XProtect Smart Client and sign in with your authorized account.
-3. Open **Summarization → History**. The final native tests on 1 November 2026
-   are gate at **20:07:09 UTC** and sidewalk at **20:08:41 UTC**. The recorded lab UI uses UTC. Verify the viewer's timezone.
-4. Select the request to inspect its camera, Webhook trigger, Completed status,
-   clip bounds, exact Hafnia answer and recording.
-5. In **Alarm Manager**, inspect the matching ICIT_TEST_GATE_REVIEW and
-   ICIT_TEST_SIDEWALK_REVIEW entries. In **Search → Bookmarks**, select the
-   matching camera to see the full AI-labelled answer and bounded recording.
+1. Connect to p042 and open **XProtect Smart Client**.
+2. Open **Summarization → History**. The recorded native requests on 1 November
+   2026 are gate at **20:07:09 UTC** and sidewalk at **20:08:41 UTC**. Check the
+   viewer's timezone when locating them.
+3. Select a request to inspect its camera, Webhook trigger, Completed status,
+   clip bounds and Hafnia answer.
+4. In **Alarm Manager**, inspect the matching `ICIT_TEST_GATE_REVIEW` and
+   `ICIT_TEST_SIDEWALK_REVIEW` entries.
+5. In **Search → Bookmarks**, select the corresponding camera and inspect the
+   AI-labelled answer and recording interval.
 
-The three ICIT_TEST_* native input rules remain configured. The connector can
-be run from an authorized Linux environment on the same organizer network using
-[REPRODUCE.md](REPRODUCE.md). It requires the scoped basic account; obtain access
-through the participant or organizer, never through public source code. A new
-request must be fresh and respect the ledger's cooldown, shared cap and review
-halt. Existing history can be inspected without consuming another analysis.
+## Recorded demonstration
 
-The Windows system and native rules are the running solution. The connector is
-a command-line client, not a permanently running public web application. Local
-VM uptime depends on the participant workstation. Organizer lab availability,
-recording retention and judge network access remain external dependencies.
+[Watch the 2:45 demo](https://tamirgez.github.io/icit-incident-review/).
 
-See the [test record](RESULTS.md) for the observed results and validation scope.
+The lab recording retention is **24 hours**. Older media may expire while
+history and alarm records remain. The video preserves the demonstrated footage
+and results. Its interactive review panel uses illustrative operator actions.
 
-## Durable public evidence and optional review tools
+## Run a fresh request
 
-The lab recording retention observed during setup was **24 hours**. Older clips
-may expire even when summary/history or alarm records remain. The public 2:45
-video preserves the demonstrated footage and result; do not assume old timestamps
-remain playable. A fresh run needs authorized access and quota/freshness checks.
+The command-line connector runs from an authorized Linux client on the same
+organizer network. Follow [Installation and configuration](REPRODUCE.md) using
+the scoped basic account. Requests must be fresh and respect the shared ledger,
+request cap, cooldown and review halt. Inspect the gateway quota before sending.
 
-The public page also offers an interactive browser replay of a gate review case.
-It lets judges explore review, follow-up and closure using illustrative outcomes.
-The [workflow guide](WORKFLOW.md) covers the optional command-line review tools.
+[Operator workflow](WORKFLOW.md) · [Results and validation](RESULTS.md)

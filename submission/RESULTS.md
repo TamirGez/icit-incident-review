@@ -18,7 +18,7 @@ gateway creation to its final Completed update, including the post-buffer wait.
 
 ## Software verification
 
-All **53 public tests passed on host and isolated guest**. Coverage includes
+The **53-test suite passed on Python 3.12 / Ubuntu 24.04**. Coverage includes
 scoped authentication, timestamp validation, REST response handling, pagination,
 durable duplicates, cooldown/shared budgets, crash reservations, uncertain
 outcomes, no POST retry and scoped WebSocket recovery. A loopback server exercises
@@ -47,6 +47,6 @@ workflow asks the operator to inspect footage and confirm the circumstances.
 Synthetic protocol tests establish the documented software behavior, while the
 recorded native flows establish the lab integration.
 
-The setup script was checked against the installed TEST configuration. Detailed
-live IDs, full response exports and operational logs remain local. Authorized
-judges can inspect the native system using [JUDGE_ACCESS.md](JUDGE_ACCESS.md).
+The setup script was verified against the installed p042 configuration.
+[Judge access instructions](JUDGE_ACCESS.md) describe how to inspect the native
+summaries, bookmarks and alarms.

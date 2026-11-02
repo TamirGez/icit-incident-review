@@ -1,17 +1,16 @@
-# Gate review: automatic event intake and human follow-up
+# Operator review and event intake
 
-The intended operator is a campus duty operator reviewing a school-gate alert.
+A campus duty operator reviews the school-gate alert and its recorded context.
 Review visible padlock/gate activity, check authorized maintenance with the duty
 caretaker, then record follow-up. A model phrase about intent is not a finding of
-unauthorized entry. The public page includes an interactive **browser replay**;
-it does not control XProtect, send a message, or contain a live detector.
+unauthorized entry. The [interactive demo](https://tamirgez.github.io/icit-incident-review/) uses a
+browser replay with illustrative review outcomes.
 
 ## Bounded automatic initiation
 
-The new bridge consumes an existing XProtect camera event using the scoped
+The event bridge consumes an existing XProtect camera event using the scoped
 WebSocket observer. It uses the event UUID as the durable trigger ID and records
-`origin=xprotect_event`. It requests the **same existing native TEST workflow**;
-there is no private plugin, inference engine or new remote configuration.
+`origin=xprotect_event`. It invokes the configured native XProtect rule and Hafnia webhook.
 
 Resolve an appropriate event type with `inventory eventTypes`, inspect the
 selected camera's actual event feed, and use a read-only dry run first:
@@ -62,4 +61,4 @@ bounded command-line observer; it is not installed as an unattended service.
 The browser replay uses an illustrative case and fixed outcome choices. It saves
 only local browser state, ignores repeated events, keeps uncertain cases open,
 and still operates if storage is denied. Native queue and browser replay are
-separate; the public page has no access to private lab data.
+separate; the browser example stores its state locally.

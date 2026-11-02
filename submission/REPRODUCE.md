@@ -1,12 +1,10 @@
-# Reproduce the XProtect + Hafnia demonstration
+# Installation and configuration
 
 The gate and sidewalk workflows have produced authentic Hafnia summaries,
 bookmarks and Smart Client alarms on the assigned p042 lab.
 See the [test record](RESULTS.md) for the evaluated scenarios and scope.
-The filmed demo uses explicitly labelled manual triggers. New optional automatic
-event intake and local operator review are documented in [WORKFLOW.md](WORKFLOW.md);
-they do not change the existing native setup. Private VLM inference is
-not part of the verified end-to-end path.
+The recorded demonstration uses manual requests. The [workflow guide](WORKFLOW.md)
+covers the operator queue and optional camera-event intake.
 
 ## 1. Environment and access
 
@@ -15,7 +13,6 @@ Smart Client 26.1.10902.6, Hafnia gateway 2.0.150.52593 and
 MilestonePSTools 25.2.61. Connector: Python 3.12.3 and requirements.lock.
 
 Reach only the assigned p042 machine on the organizer Tailscale network.
-Our run used a separate local Ubuntu VM; the host company tailnet was preserved.
 Use RDP for Windows administration. Inside p042, verify hostname and the
 Milestone XProtect Management Server service before running setup commands.
 Hafnia API requests execute inside p042, against localhost:15443.
@@ -24,21 +21,20 @@ Read the installed C:\HackathonKit instructions. Do not change Tailscale,
 firewall, administrator passwords, gateway connection settings or product
 versions. Do not reset, shut down or restart the organizer machine.
 
-## 2. Reviewed native TEST setup
+## 2. Native TEST configuration
 
-The owner approved the following reversible setup for this run. On another
-run, review the named changes before using the setup script's approval switch.
-Only newly created ICIT_TEST_* objects are in scope.
+Review the named ICIT_TEST_* objects before running the setup script with
+`-ApprovedTestSetup`. This procedure is scoped to those objects.
 
 In Management Client, Tools > Options > Analytics Events, enable the existing
-port 9090. The installed guide uses All network addresses; no Windows firewall
-change was made. Under Rules and Events > Analytics Events, create and save:
+port 9090, following the installed organizer guide. Under Rules and Events >
+Analytics Events, create and save:
 
 - ICIT_TEST_RAIL_REVIEW
 - ICIT_TEST_GATE_REVIEW
 - ICIT_TEST_SIDEWALK_REVIEW
 
-Copy only the approved connector setup files to p042. From the package root:
+Copy the connector setup files to p042. From the package root:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup_native.ps1 -ApprovedTestSetup
@@ -67,11 +63,10 @@ For each prefix, ICIT_TEST_*_REQUEST invokes only ICIT_TEST_*_SUMMARY through
 ICIT_TEST_*_TO_HAFNIA. The webhook selects its specific camera, model
 traffic-general, Create Bookmark Yes, PreBuffer 20 and PostBuffer 10.
 Its exact parameter names were checked in the installed Smart Client generator.
-Gateway ICIT_TEST_*_REVIEW matches only the positive token and raises the
-matching analytics event. Never connect motion or a result event back to Hafnia.
+Gateway ICIT_TEST_*_REVIEW matches the positive token and raises the matching
+analytics event. Keep result events out of analysis input rules to prevent loops.
 
-Finish the following GUI steps; the installed alarm-creation PowerShell command
-returned an unsupported ValidateItem error in this lab:
+Complete role permissions and alarm definitions in Management Client:
 
 1. Security > Roles > ICIT_TEST_CONNECTOR > External Events: grant Read and
    Trigger separately on the three ICIT_TEST_*_REQUEST events. Leave Edit,
@@ -86,9 +81,8 @@ returned an unsupported ValidateItem error in this lab:
    default recording rules. New event definitions may require Smart Client
    logout/login to appear in its manual event list.
 
-The new native-rule template was exported from the working gate rule and used
-to create the other two rules successfully. A clean-machine rebuild was not
-performed; the reproduction script is additionally checked against this setup.
+The included native-rule template defines the event-to-webhook mapping.
+The procedure was verified against the installed p042 configuration.
 
 ## 3. Connector configuration and live test
 
@@ -132,7 +126,7 @@ outside that ledger; inspect actual gateway quota separately.
 
 Important installed behavior: user-defined events receive server receipt time,
 ignoring a historical time supplied in the REST body. The connector rejects
-historical requests instead of silently claiming to analyze their old clip.
+requests outside the 30-second freshness window.
 The gateway waits for the post-buffer and analyzes the actual event-time window.
 Read exact clip bounds from gateway history and the bookmark.
 

@@ -6,7 +6,7 @@ def submit(trigger, client, ledger, config, now):
     if trigger.origin == "synthetic":
         raise ValueError("Synthetic triggers cannot be sent to the lab")
     if config.get("remote_setup_approved") is not True or config.get("gateway_contract_verified") is not True:
-        raise ValueError("Owner-approved remote setup and installed gateway verification are required")
+        raise ValueError("Remote setup authorization and gateway configuration verification are required")
     if trigger.camera_id != config["camera_id"]:
         raise ValueError("Trigger is outside the configured camera")
     if config.get("scenario") != trigger.label or config.get("gateway_prompt") != PROMPTS[trigger.label] or (

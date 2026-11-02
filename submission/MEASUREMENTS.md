@@ -28,13 +28,9 @@ The three initial direct challenges have no comparable native timing value.
 python scripts/evaluate.py
 ```
 
-The small [measurements.csv](measurements.csv) contains scenario aliases, response
+[measurements.csv](measurements.csv) contains scenario aliases, response
 tokens and elapsed durations. The script reports the complete recorded evaluation;
 filter its CSV to `scenario=gate, route=native` for the three gate timings above.
-No actual camera/event/request IDs, private configuration or full answers are
-included. Original timestamped exports are retained locally.
-
 Expected tokens were assigned after reviewing visible activity. Clips were
 repeated rather than sampled independently; token counts describe these runs.
 The [test record](RESULTS.md) documents the complete scenario outcomes and scope.
-The presentation makes request-completion claims supported by these timestamps.

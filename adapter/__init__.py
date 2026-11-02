@@ -1,1 +1,1 @@
-"""Local hackathon connector. No proprietary engine implementation."""
+"""iCit Incident Review: XProtect events, Hafnia context and operator workflows."""

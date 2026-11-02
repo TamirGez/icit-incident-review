@@ -1,4 +1,4 @@
-"""Synthetic protocol and safety tests. These are NOT live Milestone tests."""
+"""Protocol and request-safety tests using synthetic fixtures."""
 import contextlib
 import io
 import json
